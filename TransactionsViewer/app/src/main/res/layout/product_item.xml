@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_medium">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/spacing_small">
+
+        <TextView
+            android:id="@+id/product_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_large"
+            tools:text="Product Name" />
+
+        <TextView
+            android:id="@+id/transactions_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_name_text_view"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_small"
+            tools:text="70 transactions" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
