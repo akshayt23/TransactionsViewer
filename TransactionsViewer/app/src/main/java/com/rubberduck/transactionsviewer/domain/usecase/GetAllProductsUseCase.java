@@ -9,6 +9,8 @@ import com.rubberduck.transactionsviewer.domain.repository.ProductTransactionsRe
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * A use case which gets all products from {@link ProductTransactionsRepository}
  */
@@ -16,7 +18,8 @@ public class GetAllProductsUseCase extends UseCase<List<Product>> {
 
     private final ProductTransactionsRepository repository;
 
-    public GetAllProductsUseCase(ThreadExecutor threadExecutor,
+    @Inject
+    GetAllProductsUseCase(ThreadExecutor threadExecutor,
                                  MainThread mainThread,
                                  ProductTransactionsRepository repository) {
         super(threadExecutor, mainThread);
