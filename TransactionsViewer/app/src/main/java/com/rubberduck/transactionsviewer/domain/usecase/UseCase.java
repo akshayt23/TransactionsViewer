@@ -12,7 +12,7 @@ import com.rubberduck.transactionsviewer.domain.executor.ThreadExecutor;
 abstract class UseCase<T> {
 
     private final ThreadExecutor threadExecutor;
-    private final MainThread mainThread;
+    protected final MainThread mainThread;
 
     /**
      * @param threadExecutor A threadExecutor which it uses to execute itself on a background thread.
