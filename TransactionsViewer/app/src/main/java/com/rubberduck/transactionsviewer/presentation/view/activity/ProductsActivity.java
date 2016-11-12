@@ -1,5 +1,6 @@
 package com.rubberduck.transactionsviewer.presentation.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -81,7 +82,7 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter>
 
     @Override
     public void onProductSelected(ProductViewModel product) {
-
+        productsPresenter.onProductSelected(product.getSku());
     }
 
     @Override
@@ -103,5 +104,11 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter>
     public void showError(String errorMessage) {
         errorTextView.setText(errorMessage);
         errorTextView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void openTransactionsScreen(String productSku) {
+        Intent intent = TransactionsActivity.getCallingIntent(this, productSku);
+        startActivity(intent);
     }
 }

@@ -32,6 +32,12 @@ public class ProductsPresenter extends MvpPresenter<ProductsPresenter.View> {
         getAllProductsUseCase.execute(new GetAllProductsCallback());
     }
 
+    public void onProductSelected(String productSku) {
+        if (isViewAttached()) {
+            getView().openTransactionsScreen(productSku);
+        }
+    }
+
     private final class GetAllProductsCallback implements UseCaseCallback<List<Product>> {
 
         @Override
@@ -96,5 +102,7 @@ public class ProductsPresenter extends MvpPresenter<ProductsPresenter.View> {
         void showProducts(List<ProductViewModel> products);
 
         void showError(String errorMessage);
+
+        void openTransactionsScreen(String productSku);
     }
 }
