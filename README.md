@@ -30,3 +30,6 @@ If a direct conversion ratio is not available between two currencies, Dijkstra's
 shortest path between those two currencies.
 
 
+## Instructions to run the app
+
+Place the `transactions.json` and `rates.json` file in the `assets` folder. Build and run the app.
