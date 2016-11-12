@@ -8,8 +8,6 @@ import com.rubberduck.transactionsviewer.domain.executor.ThreadExecutor;
 import com.rubberduck.transactionsviewer.domain.repository.ProductTransactionsRepository;
 import com.rubberduck.transactionsviewer.presentation.internal.di.module.ApplicationModule;
 
-import java.util.logging.Logger;
-
 import javax.inject.Singleton;
 
 import dagger.Component;

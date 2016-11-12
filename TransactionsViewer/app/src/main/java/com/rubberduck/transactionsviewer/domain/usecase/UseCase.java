@@ -19,13 +19,6 @@ abstract class UseCase<T> {
      * @param mainThread     Typically the main application / UI thread on which the results can be dispatched.
      */
     UseCase(ThreadExecutor threadExecutor, MainThread mainThread) {
-        if (threadExecutor == null) {
-            throw new IllegalArgumentException("ThreadExecutor cannot be null");
-        }
-        if (mainThread == null) {
-            throw new IllegalArgumentException("MainThread cannot be null");
-        }
-
         this.threadExecutor = threadExecutor;
         this.mainThread = mainThread;
     }

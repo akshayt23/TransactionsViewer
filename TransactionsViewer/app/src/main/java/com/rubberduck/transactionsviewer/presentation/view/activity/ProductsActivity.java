@@ -39,8 +39,8 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter>
     @Inject
     ProductsPresenter productsPresenter;
 
-    private ProductsAdapter productsAdapter;
     private ProductComponent productComponent;
+    private ProductsAdapter productsAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
