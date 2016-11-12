@@ -23,7 +23,7 @@ The `Presenters` talk to the `UseCases` and update the `View` accordingly.
 - JUnit and Mockito for testing
 - Butterknife for view injection
 - Dagger 2 for dependency injection
-- JGraphT for graph algorithms
+- JGraphT for graph data structures and algorithms
 
 ##
 
