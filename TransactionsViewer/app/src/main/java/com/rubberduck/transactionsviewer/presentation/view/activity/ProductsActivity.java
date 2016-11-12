@@ -45,6 +45,7 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Products");
         initProductsRecycler();
     }
 
