@@ -7,13 +7,13 @@ import com.rubberduck.transactionsviewer.data.serializer.JsonSerializer;
 import javax.inject.Singleton;
 
 @Singleton
-public class ProductionTransactionsDataStoreFactory {
+public class ProductTransactionsDataStoreFactory {
 
     private final Context context;
     private final JsonSerializer jsonSerializer;
 
     @Singleton
-    public ProductionTransactionsDataStoreFactory(Context context, JsonSerializer jsonSerializer) {
+    public ProductTransactionsDataStoreFactory(Context context, JsonSerializer jsonSerializer) {
         this.context = context;
         this.jsonSerializer = jsonSerializer;
     }
