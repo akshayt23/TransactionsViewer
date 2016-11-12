@@ -79,18 +79,14 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
             List<TransactionViewModel> transactionViewModels = new ArrayList<>(fromAmounts.size());
 
             for (int i = 0; i < fromAmounts.size(); i++) {
-                String originalAmount = String.format("%s %s",
-                                                      fromAmounts.get(i).getCurrency(),
-                                                      fromAmounts.get(i).getValue());
                 String convertedAmount = resultAmounts.get(i) != null
-                        ? String.format(Locale.US, "%s %.2f",
-                                        resultAmounts.get(i).getCurrency(),
-                                        resultAmounts.get(i).getValue())
+                        ? getDisplayString(resultAmounts.get(i))
                         : String.format("Unknown conversion rate to %s", CONVERT_TO_CURRENCY);
 
-                transactionViewModels.add(new TransactionViewModel(originalAmount, convertedAmount));
+                transactionViewModels.add(new TransactionViewModel(
+                        getDisplayString(fromAmounts.get(i)), convertedAmount));
 
-                if (convertedAmount != null) {
+                if (resultAmounts.get(i) != null) {
                     totalAmount += fromAmounts.get(i).getValue();
                 } else {
                     allAmountsConverted = false;
@@ -103,6 +99,10 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
                 getView().showTotalAmount(String.format("Failed to convert all amounts to %s", CONVERT_TO_CURRENCY));
             }
             getView().showTransactions(transactionViewModels);
+        }
+
+        private String getDisplayString(Amount amount) {
+            return String.format(Locale.US, "%s %.2f", amount.getCurrency(), amount.getValue());
         }
 
         @Override
