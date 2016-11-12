@@ -26,7 +26,6 @@ public class GetTransactionCountsUseCase extends UseCase<List<Integer>> {
                                 ProductTransactionsRepository repository) {
         super(threadExecutor, mainThread);
         this.repository = repository;
-        this.productSkus = productSkus;
     }
 
     public GetTransactionCountsUseCase init(List<String> productSkus) {
