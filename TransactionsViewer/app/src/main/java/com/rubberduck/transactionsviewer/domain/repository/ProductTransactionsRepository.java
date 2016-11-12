@@ -1,6 +1,7 @@
 package com.rubberduck.transactionsviewer.domain.repository;
 
 import com.rubberduck.transactionsviewer.domain.exception.NoProductAvailableException;
+import com.rubberduck.transactionsviewer.domain.exception.ProductNotFoundException;
 import com.rubberduck.transactionsviewer.domain.model.Product;
 
 import java.util.List;
@@ -19,11 +20,12 @@ public interface ProductTransactionsRepository {
     List<Product> getAllProducts() throws NoProductAvailableException;
 
     /**
-     * Returns a list of integers which contains the total transaction count for each {@link Product}
+     * Returns the count of transactions for a particular {@link Product}.
      *
-     * @param products A list of {@link Product}
-     * @return A list of integers
+     * @param productSku The sku of the product whose transactions are required
+     * @return The total no transactions
+     * @throws ProductNotFoundException If a product with the given sku is not found
      */
-    List<Integer> getTransactionCounts(List<Product> products);
+    Integer getTransactionsCount(String productSku) throws ProductNotFoundException;
 
 }
