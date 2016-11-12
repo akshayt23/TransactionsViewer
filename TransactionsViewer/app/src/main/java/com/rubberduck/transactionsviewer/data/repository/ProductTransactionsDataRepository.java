@@ -51,6 +51,11 @@ public class ProductTransactionsDataRepository implements ProductTransactionsRep
 
     @Override
     public Integer getTransactionsCount(String productSku) throws ProductNotFoundException {
+        return getAllTransactions(productSku).size();
+    }
+
+    @Override
+    public List<Transaction> getAllTransactions(String productSku) throws ProductNotFoundException {
         if (skuProductMap == null || productTransactionsMap == null) {
             try {
                 populateData(dataStoreFactory.create());
@@ -72,7 +77,7 @@ public class ProductTransactionsDataRepository implements ProductTransactionsRep
             transactions = productTransactionsMap.get(product);
         }
 
-        return transactions.size();
+        return transactions;
     }
 
     private void populateData(ProductTransactionsDataStore dataStore) throws IOException {
