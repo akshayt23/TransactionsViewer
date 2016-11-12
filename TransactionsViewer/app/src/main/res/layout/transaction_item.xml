@@ -1,0 +1,34 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transaction_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_medium">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/spacing_small">
+
+        <TextView
+            android:id="@+id/original_amount_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_tiny"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_large"
+            tools:text="$30.10" />
+
+        <TextView
+            android:id="@+id/amount_in_gbp_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/original_amount_text_view"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_small"
+            tools:text="£21.70" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
