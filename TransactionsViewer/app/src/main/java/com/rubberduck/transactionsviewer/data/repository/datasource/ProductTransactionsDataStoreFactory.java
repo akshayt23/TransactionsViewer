@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.rubberduck.transactionsviewer.data.serializer.JsonSerializer;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
@@ -12,8 +13,8 @@ public class ProductTransactionsDataStoreFactory {
     private final Context context;
     private final JsonSerializer jsonSerializer;
 
-    @Singleton
-    public ProductTransactionsDataStoreFactory(Context context, JsonSerializer jsonSerializer) {
+    @Inject
+    ProductTransactionsDataStoreFactory(Context context, JsonSerializer jsonSerializer) {
         this.context = context;
         this.jsonSerializer = jsonSerializer;
     }
