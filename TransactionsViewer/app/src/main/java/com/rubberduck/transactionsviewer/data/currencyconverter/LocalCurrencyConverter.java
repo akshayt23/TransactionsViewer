@@ -55,6 +55,11 @@ public class LocalCurrencyConverter implements CurrencyConverter {
             }
         }
 
+        if (!conversionRatesGraph.containsVertex(source.getCurrency()) ||
+                !conversionRatesGraph.containsVertex(toCurrency)) {
+            throw new CurrencyConversionFailedException("Conversion rate not known.");
+        }
+
         Double conversionRate;
         if (conversionRatesGraph.containsEdge(source.getCurrency(), toCurrency)) {
             conversionRate = conversionRatesGraph.getEdge(source.getCurrency(), toCurrency);
@@ -100,7 +105,6 @@ public class LocalCurrencyConverter implements CurrencyConverter {
 
     private Double calculateConversionRate(String from, String to) throws CurrencyConversionFailedException {
         List<Double> path = DijkstraShortestPath.findPathBetween(conversionRatesGraph, from, to);
-
         if (path == null) {
             throw new CurrencyConversionFailedException("Conversion rate not known.");
         }

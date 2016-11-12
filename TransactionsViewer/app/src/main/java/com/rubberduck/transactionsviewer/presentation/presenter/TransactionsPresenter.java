@@ -16,6 +16,8 @@ import javax.inject.Inject;
 
 public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.View> {
 
+    private final String CONVERT_TO_CURRENCY = "GBP";
+
     private final GetTransactionsUseCase getTransactionsUseCase;
     private final ConvertAmountsUseCase convertAmountsUseCase;
 
@@ -47,7 +49,7 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
                 originalAmounts.add(transaction.getAmount());
             }
 
-            convertAmountsUseCase.init(originalAmounts, "GBP")
+            convertAmountsUseCase.init(originalAmounts, CONVERT_TO_CURRENCY)
                                  .execute(new ConvertAmountsCallback(originalAmounts));
         }
 
@@ -81,7 +83,7 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
                         ? String.format(Locale.US, "%s %.2f",
                                         resultAmounts.get(i).getCurrency(),
                                         resultAmounts.get(i).getValue())
-                        : "Unknown conversion rate to GBP";
+                        : String.format("Unknown conversion rate to %s", CONVERT_TO_CURRENCY);
 
                 transactionViewModels.add(new TransactionViewModel(originalAmount, convertedAmount));
             }
