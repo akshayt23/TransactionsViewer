@@ -7,6 +7,8 @@ import com.rubberduck.transactionsviewer.data.model.TransactionData;
 import com.rubberduck.transactionsviewer.data.serializer.JsonSerializer;
 import com.rubberduck.transactionsviewer.data.util.IOUtils;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -37,6 +39,16 @@ class FileProductTransactionsDataStore implements ProductTransactionsDataStore {
 
         Type transactionDataListType = new TypeToken<ArrayList<TransactionData>>() {
         }.getType();
-        return jsonSerializer.deserialize(json, transactionDataListType);
+        List<TransactionData> data = null;
+        try {
+            data = jsonSerializer.deserialize(json, transactionDataListType);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (data == null || data.isEmpty()) {
+            throw new IOException("Empty file");
+        }
+
+        return data;
     }
 }

@@ -1,6 +1,9 @@
 package com.rubberduck.transactionsviewer.data.serializer;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
+import org.json.JSONException;
 
 import java.lang.reflect.Type;
 
@@ -16,7 +19,7 @@ public class JsonSerializer {
     private final Gson gson = new Gson();
 
     @Inject
-    public JsonSerializer() {
+    JsonSerializer() {
     }
 
     /**
@@ -26,7 +29,7 @@ public class JsonSerializer {
      * @param typeOfSource The specific genericized type of source
      * @return Json representation of source
      */
-    public String serialize(Object source, Type typeOfSource) {
+    public String serialize(Object source, Type typeOfSource) throws JSONException {
         return gson.toJson(source, typeOfSource);
     }
 
@@ -39,7 +42,7 @@ public class JsonSerializer {
      * @param <T>     The type of the desired object
      * @return An object of type T from the json string
      */
-    public <T> T deserialize(String json, Type typeOfT) {
+    public <T> T deserialize(String json, Type typeOfT) throws JSONException {
         return gson.fromJson(json, typeOfT);
     }
 }

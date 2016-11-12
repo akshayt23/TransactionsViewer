@@ -96,7 +96,7 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
             if (allAmountsConverted) {
                 getView().showTotalAmount(String.format(Locale.US, "Total: %.2f", totalAmount));
             } else {
-                getView().showTotalAmount(String.format("Failed to convert all amounts to %s", CONVERT_TO_CURRENCY));
+                getView().showTotalAmount(String.format("Failed to convert at least one amount to %s", CONVERT_TO_CURRENCY));
             }
             getView().showTransactions(transactionViewModels);
         }

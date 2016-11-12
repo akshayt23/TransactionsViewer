@@ -13,6 +13,7 @@ import com.rubberduck.transactionsviewer.domain.model.Amount;
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedGraph;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -88,7 +89,18 @@ public class LocalCurrencyConverter implements CurrencyConverter {
 
         Type conversionDataListType = new TypeToken<ArrayList<CurrencyConversionData>>() {
         }.getType();
-        return jsonSerializer.deserialize(json, conversionDataListType);
+        List<CurrencyConversionData> data = null;
+        try {
+            data = jsonSerializer.deserialize(json, conversionDataListType);
+        } catch (JSONException e) {
+            throw new IOException("Failed to read data from file");
+        }
+
+        if (data == null || data.isEmpty()) {
+            throw new IOException("Empty file");
+        }
+
+        return data;
     }
 
     private void addConversionRateToGraph(String fromCurrency, String toCurrency, Double rate) {
