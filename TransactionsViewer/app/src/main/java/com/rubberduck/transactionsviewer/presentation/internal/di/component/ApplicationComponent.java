@@ -2,6 +2,7 @@ package com.rubberduck.transactionsviewer.presentation.internal.di.component;
 
 import android.content.Context;
 
+import com.rubberduck.transactionsviewer.domain.currencyconverter.CurrencyConverter;
 import com.rubberduck.transactionsviewer.domain.executor.MainThread;
 import com.rubberduck.transactionsviewer.domain.executor.ThreadExecutor;
 import com.rubberduck.transactionsviewer.domain.repository.ProductTransactionsRepository;
@@ -28,4 +29,5 @@ public interface ApplicationComponent {
 
     ProductTransactionsRepository productTransactionsRepository();
 
+    CurrencyConverter currencyConverter();
 }
