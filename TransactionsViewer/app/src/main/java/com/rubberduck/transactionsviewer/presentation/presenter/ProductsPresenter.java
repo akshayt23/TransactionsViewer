@@ -19,8 +19,8 @@ public class ProductsPresenter extends MvpPresenter<ProductsPresenter.View> {
     private final GetTransactionCountsUseCase getTransactionCountsUseCase;
 
     @Inject
-    public ProductsPresenter(GetAllProductsUseCase getAllProductsUseCase,
-                             GetTransactionCountsUseCase getTransactionCountsUseCase) {
+    ProductsPresenter(GetAllProductsUseCase getAllProductsUseCase,
+                      GetTransactionCountsUseCase getTransactionCountsUseCase) {
         this.getAllProductsUseCase = getAllProductsUseCase;
         this.getTransactionCountsUseCase = getTransactionCountsUseCase;
     }

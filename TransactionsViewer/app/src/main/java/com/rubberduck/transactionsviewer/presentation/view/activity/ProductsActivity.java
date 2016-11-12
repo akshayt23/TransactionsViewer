@@ -2,6 +2,7 @@ package com.rubberduck.transactionsviewer.presentation.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,14 +13,18 @@ import com.rubberduck.transactionsviewer.presentation.internal.di.component.Dagg
 import com.rubberduck.transactionsviewer.presentation.internal.di.component.ProductComponent;
 import com.rubberduck.transactionsviewer.presentation.model.ProductViewModel;
 import com.rubberduck.transactionsviewer.presentation.presenter.ProductsPresenter;
+import com.rubberduck.transactionsviewer.presentation.view.adapter.ProductsAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class ProductsActivity extends MvpActivity<ProductsPresenter> implements ProductsPresenter.View {
+public class ProductsActivity extends MvpActivity<ProductsPresenter>
+        implements ProductsPresenter.View,
+                   ProductsAdapter.OnProductSelectedListener {
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
@@ -33,6 +38,7 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter> implements 
     @Inject
     ProductsPresenter productsPresenter;
 
+    private ProductsAdapter productsAdapter;
     private ProductComponent productComponent;
 
     @Override
@@ -42,6 +48,13 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter> implements 
     }
 
     private void initProductsRecycler() {
+        final List<ProductViewModel> emptyProductList = new ArrayList<>();
+
+        productsAdapter = new ProductsAdapter(emptyProductList, this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+        productsRecycler.setLayoutManager(linearLayoutManager);
+        productsRecycler.setAdapter(productsAdapter);
     }
 
     @Override
@@ -67,6 +80,11 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter> implements 
     }
 
     @Override
+    public void onProductSelected(ProductViewModel product) {
+
+    }
+
+    @Override
     public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -78,7 +96,7 @@ public class ProductsActivity extends MvpActivity<ProductsPresenter> implements 
 
     @Override
     public void showProducts(List<ProductViewModel> products) {
-
+        productsAdapter.refresh(products);
     }
 
     @Override
