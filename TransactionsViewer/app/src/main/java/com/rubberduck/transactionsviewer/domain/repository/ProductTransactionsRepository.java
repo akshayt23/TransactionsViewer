@@ -1,6 +1,6 @@
 package com.rubberduck.transactionsviewer.domain.repository;
 
-import com.rubberduck.transactionsviewer.domain.exception.NoProductAvailableException;
+import com.rubberduck.transactionsviewer.domain.exception.NoProductsAvailableException;
 import com.rubberduck.transactionsviewer.domain.exception.ProductNotFoundException;
 import com.rubberduck.transactionsviewer.domain.model.Product;
 
@@ -15,9 +15,9 @@ public interface ProductTransactionsRepository {
      * Returns a list of all the {@link Product} in the system.
      *
      * @return A list of {@link Product}
-     * @throws NoProductAvailableException If no products are available
+     * @throws NoProductsAvailableException If no products are available
      */
-    List<Product> getAllProducts() throws NoProductAvailableException;
+    List<Product> getAllProducts() throws NoProductsAvailableException;
 
     /**
      * Returns the count of transactions for a particular {@link Product}.

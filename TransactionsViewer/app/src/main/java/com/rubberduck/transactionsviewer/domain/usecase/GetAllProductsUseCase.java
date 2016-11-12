@@ -1,7 +1,7 @@
 package com.rubberduck.transactionsviewer.domain.usecase;
 
 import com.rubberduck.transactionsviewer.domain.exception.ErrorBundle;
-import com.rubberduck.transactionsviewer.domain.exception.NoProductAvailableException;
+import com.rubberduck.transactionsviewer.domain.exception.NoProductsAvailableException;
 import com.rubberduck.transactionsviewer.domain.executor.MainThread;
 import com.rubberduck.transactionsviewer.domain.executor.ThreadExecutor;
 import com.rubberduck.transactionsviewer.domain.model.Product;
@@ -20,8 +20,8 @@ public class GetAllProductsUseCase extends UseCase<List<Product>> {
 
     @Inject
     GetAllProductsUseCase(ThreadExecutor threadExecutor,
-                                 MainThread mainThread,
-                                 ProductTransactionsRepository repository) {
+                          MainThread mainThread,
+                          ProductTransactionsRepository repository) {
         super(threadExecutor, mainThread);
         this.repository = repository;
     }
@@ -38,7 +38,7 @@ public class GetAllProductsUseCase extends UseCase<List<Product>> {
                     callback.onSuccess(products);
                 }
             });
-        } catch (final NoProductAvailableException e) {
+        } catch (final NoProductsAvailableException e) {
             mainThread.post(new Runnable() {
                 @Override
                 public void run() {
