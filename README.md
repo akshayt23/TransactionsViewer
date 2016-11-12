@@ -1,6 +1,8 @@
 # TransactionsViewer
-
 A simple Android app to view a set of products and associated transactions.
+
+## Instructions to run the app
+Place the `transactions.json` and `rates.json` file in the `assets` folder. Build and run the app.
 
 ## Architecture
 
@@ -29,7 +31,3 @@ I'm building a conversion ratio graph from all the conversion rates provided.
 If a direct conversion ratio is not available between two currencies, Dijkstra's algorithm is used to calculate the 
 shortest path between those two currencies.
 
-
-## Instructions to run the app
-
-Place the `transactions.json` and `rates.json` file in the `assets` folder. Build and run the app.
