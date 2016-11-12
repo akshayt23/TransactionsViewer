@@ -4,7 +4,6 @@
                 android:id="@+id/activity_transactions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/spacing_small"
                 tools:context="com.rubberduck.transactionsviewer.presentation.view.activity.TransactionsActivity">
 
     <ProgressBar
@@ -12,12 +11,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="invisible" />
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/total_amount_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@color/colorPrimaryLight"
+        android:padding="@dimen/spacing_small"
+        android:textColor="@color/white"
+        android:visibility="invisible"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/transactions_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/total_amount_text_view">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -28,6 +38,6 @@
         android:layout_centerInParent="true"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_large"
-        android:visibility="invisible" />
+        android:visibility="invisible"/>
 
 </RelativeLayout>

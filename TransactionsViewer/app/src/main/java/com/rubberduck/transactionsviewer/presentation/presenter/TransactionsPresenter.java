@@ -74,7 +74,10 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
         public void onSuccess(List<Amount> resultAmounts) {
             getView().hideProgressBar();
 
+            boolean allAmountsConverted = true;
+            double totalAmount = 0;
             List<TransactionViewModel> transactionViewModels = new ArrayList<>(fromAmounts.size());
+
             for (int i = 0; i < fromAmounts.size(); i++) {
                 String originalAmount = String.format("%s %s",
                                                       fromAmounts.get(i).getCurrency(),
@@ -86,8 +89,19 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
                         : String.format("Unknown conversion rate to %s", CONVERT_TO_CURRENCY);
 
                 transactionViewModels.add(new TransactionViewModel(originalAmount, convertedAmount));
+
+                if (convertedAmount != null) {
+                    totalAmount += fromAmounts.get(i).getValue();
+                } else {
+                    allAmountsConverted = false;
+                }
             }
 
+            if (allAmountsConverted) {
+                getView().showTotalAmount(String.format(Locale.US, "Total: %.2f", totalAmount));
+            } else {
+                getView().showTotalAmount(String.format("Failed to convert all amounts to %s", CONVERT_TO_CURRENCY));
+            }
             getView().showTransactions(transactionViewModels);
         }
 
@@ -102,6 +116,8 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
         void showProgressBar();
 
         void hideProgressBar();
+
+        void showTotalAmount(String totalAmount);
 
         void showTransactions(List<TransactionViewModel> transactions);
 

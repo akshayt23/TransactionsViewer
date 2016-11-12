@@ -33,6 +33,9 @@ public class TransactionsActivity extends MvpActivity<TransactionsPresenter>
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+    @BindView(R.id.total_amount_text_view)
+    TextView totalAmountTextView;
+
     @BindView(R.id.transactions_recycler)
     RecyclerView transactionsRecycler;
 
@@ -111,6 +114,12 @@ public class TransactionsActivity extends MvpActivity<TransactionsPresenter>
     @Override
     public void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showTotalAmount(String totalAmount) {
+        totalAmountTextView.setText(totalAmount);
+        totalAmountTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
