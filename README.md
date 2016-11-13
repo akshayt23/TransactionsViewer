@@ -1,6 +1,8 @@
 # TransactionsViewer
-
 A simple Android app to view a set of products and associated transactions.
+
+## Instructions to run the app
+Place the `transactions.json` and `rates.json` file in the `assets` folder. Build and run the app.
 
 ## Architecture
 
@@ -21,12 +23,11 @@ The `Presenters` talk to the `UseCases` and update the `View` accordingly.
 - JUnit and Mockito for testing
 - Butterknife for view injection
 - Dagger 2 for dependency injection
-- JGraphT for graph algorithms
+- JGraphT for graph data structures and algorithms
 
 ##
 
 I'm building a conversion ratio graph from all the conversion rates provided.
 If a direct conversion ratio is not available between two currencies, Dijkstra's algorithm is used to calculate the 
 shortest path between those two currencies.
-
 
