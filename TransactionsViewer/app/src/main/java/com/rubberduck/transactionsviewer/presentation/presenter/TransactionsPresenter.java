@@ -87,14 +87,14 @@ public class TransactionsPresenter extends MvpPresenter<TransactionsPresenter.Vi
                         getDisplayString(fromAmounts.get(i)), convertedAmount));
 
                 if (resultAmounts.get(i) != null) {
-                    totalAmount += fromAmounts.get(i).getValue();
+                    totalAmount += resultAmounts.get(i).getValue();
                 } else {
                     allAmountsConverted = false;
                 }
             }
 
             if (allAmountsConverted) {
-                getView().showTotalAmount(String.format(Locale.US, "Total: %.2f", totalAmount));
+                getView().showTotalAmount(String.format(Locale.US, "Total: %.2f GBP", totalAmount));
             } else {
                 getView().showTotalAmount(String.format("Failed to convert at least one amount to %s", CONVERT_TO_CURRENCY));
             }
